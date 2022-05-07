@@ -4,9 +4,44 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  });
+    hp: {
+      type: DataTypes.INTEGER
+    },
+    attack: {
+      type: DataTypes.INTEGER
+    },
+    defense: {
+      type: DataTypes.INTEGER
+    },
+    speed: {
+      type: DataTypes.INTEGER
+    },
+    height: {
+      type: DataTypes.INTEGER
+    },
+    weight: {
+      type: DataTypes.INTEGER
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false
+    },
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: 'https://cdna.artstation.com/p/assets/images/images/017/645/126/large/antoine-van-bergen-pokeball-avb2.jpg?1556806249'
+    }
+  },
+  {timestamps: false}
+  );
 };
