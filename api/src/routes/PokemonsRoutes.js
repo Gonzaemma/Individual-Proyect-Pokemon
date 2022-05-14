@@ -132,7 +132,86 @@ router.get('/',async (req,res)=>{
     } catch (error) {
         console.error('Error en el getPokemons. ',error.messege);
     }
-})
+});
+
+router.get('/:id', async (req, res)=>{
+    const id = req.params.id;
+
+    if(id.includes('-') && id.length==36){ //esto quiere decir que se trata de un UUID
+        try{
+            var pokeDB = await Pokemon.findByPk(id,
+                {
+                    attributes: {
+                        exclude: ['createdAt', 'UpdatedAt']
+                    },
+                    include: {
+                        model: Type, as: 'types',
+                        attributes: ['id', 'name'],
+                        through: {attributes:[]}
+                    }
+                });
+                pokeDB.id && res.json(pokeDB);
+        }catch(e){
+            res.status(404).send({msg: 'No se encontró el pokemon especificado. (DB) ', error: e.message})
+        }
+    }else{//Hay que buscar en la api
+        try{
+            var resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            const pokeAPI = {
+                id: resp.data.id,
+                name: resp.data.name,
+                height: resp.data.height,
+                weight: resp.data.weight,
+                image: resp.data.sprites.other.dream_world.front_default,
+                hp: resp.data.stats[0].base_stat,
+                attack: resp.data.stats[1].base_stat,
+                defense: resp.data.stats[2].base_stat,
+                speed: resp.data.stats[5].base_stat,
+                types: resp.data.types.map(t => t.type.name)
+            }
+
+            res.json(pokeAPI);
+        }catch(e){
+            res.status(404).send({msg: 'No se encontró el pokemon especificado. (API) ', error: e.message})
+        }
+    }
+
+});
+
+router.post('/', async (req, res)=>{
+    console.log("ENTRÉ AL POST.");
+    //luego si quiero, verificar los datos que me llegan
+    try{
+        const {
+            name, hp, attack, defense, speed, height, weight, types
+        } = req.body; //este es el destructuring de la info que llega por body
+    
+        const [createdPokemon, isCreated] = await Pokemon.findOrCreate({
+            where:{name},
+            defaults:{
+                name, hp, attack, defense, speed, height, weight
+            }
+        });
+
+        if(isCreated){
+            console.log("pokemon creado, entro al if created");
+            //debe tener tipos en la base de datos antes
+            let selectedTypes = await Type.findAll({
+                where:{ name: types },
+                attributes: {
+                    exclude: ["createdAt", "updatedAt"]
+                }
+            });
+            createdPokemon.addType(selectedTypes);
+            res.status(201).send("pokemon creado exitosamente");
+        }else{
+            console.log("Pokemon no creado!");
+            res.status(409).send("El pokemon que intenta crear YA EXISTE en la base de datos");
+        }
+    }catch(e){
+        console.log("Error en el post!", e.message);
+    }
+});
 
 module.exports = router;
 
