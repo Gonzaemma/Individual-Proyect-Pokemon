@@ -42,7 +42,7 @@ const getPokes = async (name)=>{
                     attack: finded2.data.stats[1].base_stat,
                     defense: finded2.data.stats[2].base_stat,
                     speed: finded2.data.stats[5].base_stat,
-                    types: finded2.data.types.map(t => t.type.name)
+                    types: finded2.data.types.map(t => {return {name: t.type.name}})
                  };
                 return { finded: pokeJson};
             }
@@ -103,7 +103,7 @@ const APIinfo = async function (){
                             attack: poke.stats[1].base_stat,
                             defense: poke.stats[2].base_stat,
                             speed: poke.stats[5].base_stat,
-                            types: poke.types.map(t => t.type.name)
+                            types: poke.types.map(t => {return {name: t.type.name}})
                          }
                     });
                 page++;
@@ -167,7 +167,7 @@ router.get('/:id', async (req, res)=>{
                 attack: resp.data.stats[1].base_stat,
                 defense: resp.data.stats[2].base_stat,
                 speed: resp.data.stats[5].base_stat,
-                types: resp.data.types.map(t => t.type.name)
+                types: resp.data.types.map(t => {return {name: t.type.name}})
             }
 
             res.json(pokeAPI);
@@ -194,7 +194,6 @@ router.post('/', async (req, res)=>{
         });
 
         if(isCreated){
-            console.log("pokemon creado, entro al if created");
             //debe tener tipos en la base de datos antes
             let selectedTypes = await Type.findAll({
                 where:{ name: types },
@@ -205,7 +204,6 @@ router.post('/', async (req, res)=>{
             createdPokemon.addType(selectedTypes);
             res.status(201).send("pokemon creado exitosamente");
         }else{
-            console.log("Pokemon no creado!");
             res.status(409).send("El pokemon que intenta crear YA EXISTE en la base de datos");
         }
     }catch(e){

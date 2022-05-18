@@ -1,0 +1,21 @@
+.body{
+    background-image: url("https://browsecat.net/sites/default/files/pokemon-grass-background-128740-205983-5355154.png");
+    background-size: 80%;
+}
+
+.cardContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    column-gap: 50px;
+    grid-row-gap: 30px;
+    justify-content: space-evenly;
+    justify-content: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 100px;
+}
+
+.filterDiv{
+    color: red;
+}

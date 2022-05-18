@@ -1,0 +1,31 @@
+.card{
+    position: relative;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(rgb(235, 201, 54), rgb(2, 12, 44));
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    margin: 12px;
+    border-radius: 5px;
+    border-style:solid;
+    border-color:rgb(81, 95, 0);
+    transition: 0.4s;
+}
+
+.card > img{
+        object-fit: cover;
+        object-position: center;
+        border-radius: 2px;
+        width:250px;
+        height:200px;
+}
+.card:hover{
+    box-shadow: 0 0 10px rgb(29, 10, 100),
+    0 0 20px rgb(0, 68, 255),
+    0 0 30px rgb(55, 0, 255),
+    0 0 40px rgb(21, 3, 51);
+       transform: translate3d(0.1ch, 0.1in, 7em);
+       background: linear-gradient(rgba(231, 211, 27, 0.6), rgb(0, 0, 0, 0.6));
+       color: rgba(255, 255, 255, 0.5);
+}
