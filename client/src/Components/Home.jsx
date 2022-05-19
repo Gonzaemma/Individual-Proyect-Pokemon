@@ -7,6 +7,7 @@ import { filterByType, filterByCreated, orderByAttack, orderByName } from "../St
 import { Link } from "react-router-dom";
 
 import HomeCSS from '../Styles/Home.module.css';
+import PaginatorBar from "./PaginatorBar";
 
 export default function Home(){
     //ESTADOS LOCALES Y GLOBALES//
@@ -16,7 +17,7 @@ export default function Home(){
 
     useEffect(()=>{
         !pokemons.length && dispatch(getPokemons());
-        !pokemons.length && dispatch(getTypes()); //probar luego cn el &&
+        !types.length && dispatch(getTypes()); //probar luego cn el &&
     },[dispatch])
 
     /* HANDLERS */
@@ -26,21 +27,34 @@ export default function Home(){
     }
     function handleTypeChange(e){
         dispatch(filterByType(e.target.value));
-        //setCurrentPage(1);
+        setCurrentPage(1);
     }
     function handleOriginChange(e){
         dispatch(filterByCreated(e.target.value));
+        setCurrentPage(1);
     }
     function handleAlphaChange(e){
-        //e.preventDefault();
+        e.preventDefault();
         dispatch(orderByName(e.target.value));
-        //setReRender(e.target.value);
+        setCurrentPage(1)
     }
     function handleAttackChange(e){
         //e.preventDefault();
         dispatch(orderByAttack(e.target.value));
-        //setReRender(e.target.value);
+        setCurrentPage(1);
     }
+
+    /* ------------ Operaciones para el paginado ------------ */
+    var pokesPorPag = 12;
+    const [currentPage, setCurrentPage] = useState(1);
+    var totalPokes = pokemons.length;
+    const cantPages = Math.ceil(totalPokes/pokesPorPag);
+    var lastItem = currentPage*pokesPorPag;
+    var firstItem = lastItem-pokesPorPag;
+    const slicedPokemons = pokemons.slice(firstItem, lastItem);
+    const paginator = pageNumber =>{
+        setCurrentPage(pageNumber);
+    };
 
     return(
         <div className={HomeCSS.body}>
@@ -81,10 +95,11 @@ export default function Home(){
         </div>
 
     {/* SECCIÓN DE PAGINADO Y CARDS DE POKEMONS*/}
+        <PaginatorBar cantPages={cantPages} paginator={paginator}/>
         <div className={HomeCSS.cardContainer}>
             {
-                pokemons.length ? (
-                    pokemons.map(p=>{
+                slicedPokemons.length ? (
+                    slicedPokemons.map(p=>{
                         return(
                             <Link key={p.id} to={"/pokemon/"+p.id}>
                                 <Card image={p.image} name={p.name} types={p.types}/>

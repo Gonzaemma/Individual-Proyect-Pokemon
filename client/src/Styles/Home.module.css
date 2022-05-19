@@ -5,15 +5,20 @@
 
 .cardContainer{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    column-gap: 50px;
+    column-gap: 20px;
     grid-row-gap: 30px;
     justify-content: space-evenly;
     justify-content: center;
     align-content: space-evenly;
     align-items: center;
-    margin-left: 100px;
+    margin-left: 50px;
+}
+
+.div > h3{
+    display: flex;
+    justify-content: center;
 }
 
 .filterDiv{

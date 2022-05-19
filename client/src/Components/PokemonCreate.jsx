@@ -10,6 +10,9 @@ export default function PokemonCreate(){
         if(!types.length){
             dispatch(getTypes());
         }
+        setErrors(validator({
+            name:"", types: [1,2], image: ".png"
+        }));
     },[dispatch]);
 
     const emptyState ={
@@ -46,9 +49,11 @@ export default function PokemonCreate(){
     }
     function handleTypeSelect(e){
         e.preventDefault();
-        if(!input.types.includes(e.target.value)){
-            setInput({...input, types: [...input.types, e.target.value]});
-            setErrors(validator({...input, types: [...input.types, e.target.value]}));
+        if(e.target.value !== "Select types..."){
+            if(!input.types.includes(e.target.value)){
+                setInput({...input, types: [...input.types, e.target.value]});
+                setErrors(validator({...input, types: [...input.types, e.target.value]}));
+            }
         }
     }
     function handleTypeDelte(t){
@@ -60,7 +65,9 @@ export default function PokemonCreate(){
         e.preventDefault();
         dispatch(postPokemon(input)); //dispatch??
         setInput(emptyState);
-        if(input.name.length < 1) errors.name = "Ingrese un nombre.";
+        setErrors(validator({
+            name:"", types: [1,2], image: ".png"
+        }));
     }
     return(
         <div className="formContainer">
@@ -119,7 +126,7 @@ export default function PokemonCreate(){
                     {errors.image && <p>{errors.image}</p>}
                     <br />
                 </div>
-                {!Object.keys(errors).length && <button type="submit"> SUBMIT </button>}
+                {!errors.name && !errors.types && <button type="submit"> SUBMIT </button>}
             </form>
             <div>
                 {/* Zona para desmarcar tipos! */}
@@ -132,3 +139,4 @@ export default function PokemonCreate(){
         </div>
     )
 }
+//{!Object.keys(errors).length && <button type="submit"> SUBMIT </button>}
