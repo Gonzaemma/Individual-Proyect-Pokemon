@@ -56,7 +56,7 @@ const getPokes = async (name)=>{
             return {finded: pokeTotal};
         }
     }catch(e){
-        console.log('error en el getPokes()', e.messege);
+        console.log('error en el getPokes()', e.message);
     }
 };
 
@@ -75,7 +75,7 @@ const DBinfo = async function (){
         //tal vez haga falta un map acá? tal vez...
         return dbInfo;
     }catch(e){
-        console.log("Error en traer los datos de la DB. ", e.messege);
+        console.log("Error en traer los datos de la DB. ", e.message);
     }
 }
 
@@ -116,7 +116,7 @@ const APIinfo = async function (){
         //console.log("'pokes40' existe! trajo de la api y es: ", pokes40);
         return pokes40;
     } catch (error) {
-        console.log("Error en traer datos de la api. ", error.messege);
+        console.log("Error en traer datos de la api. ", error.message);
     }
 }
 
@@ -130,7 +130,7 @@ router.get('/',async (req,res)=>{
             res.status(404).send("Pokemon not found.")
         }
     } catch (error) {
-        console.error('Error en el getPokemons. ',error.messege);
+        console.error('Error en el getPokemons. ',error.message);
     }
 });
 
@@ -183,13 +183,13 @@ router.post('/', async (req, res)=>{
     //luego si quiero, verificar los datos que me llegan
     try{
         const {
-            name, hp, attack, defense, speed, height, weight, types
+            name, hp, attack, defense, speed, image, height, weight, types
         } = req.body; //este es el destructuring de la info que llega por body
     
         const [createdPokemon, isCreated] = await Pokemon.findOrCreate({
             where:{name},
             defaults:{
-                name, hp, attack, defense, speed, height, weight
+                name, hp, attack, defense, speed, image, height, weight
             }
         });
 
