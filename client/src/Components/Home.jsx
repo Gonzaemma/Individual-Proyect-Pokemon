@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navbar from "./Navbar";
 import Card from "./Card";
 import { getPokemons, getTypes } from "../Actions";
-import { filterByType, filterByCreated, orderByAttack, orderByName } from "../Store/Slices";
+import { filterByType, filterByCreated, orderByAttack, orderByName, clearPokes } from "../Store/Slices";
 import { Link } from "react-router-dom";
 
 import HomeCSS from '../Styles/Home.module.css';
@@ -17,13 +17,15 @@ export default function Home(){
 
     useEffect(()=>{
         !pokemons.length && dispatch(getPokemons());
-        !types.length && dispatch(getTypes()); //probar luego cn el &&
+        !types.length && dispatch(getTypes());
     },[dispatch])
 
     /* HANDLERS */
     function handleClick(e){
         e.preventDefault();
+        dispatch(clearPokes());
         dispatch(getPokemons());
+        
     }
     function handleTypeChange(e){
         dispatch(filterByType(e.target.value));
@@ -96,19 +98,23 @@ export default function Home(){
 
     {/* SECCIÓN DE PAGINADO Y CARDS DE POKEMONS*/}
         <PaginatorBar cantPages={cantPages} paginator={paginator}/>
-        <div className={HomeCSS.cardContainer}>
             {
                 slicedPokemons.length ? (
-                    slicedPokemons.map(p=>{
-                        return(
-                            <Link key={p.id} to={"/pokemon/"+p.id}>
-                                <Card image={p.image} name={p.name} types={p.types}/>
-                            </Link>
-                        )
-                    })
-                ) : <h3>Loading...</h3>
+                    <div className={HomeCSS.cardContainer}>
+                        {slicedPokemons.map(p=>{
+                            return(
+                                <Link key={p.id} to={"/pokemon/"+p.id}>
+                                    <Card image={p.image} name={p.name} types={p.types}/>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                ) : <div>
+                <img className={HomeCSS.loading}
+                 src="https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv" alt="image not found" />
+                <h3>CAPTURANDO POKEMONS...</h3>
+                </div>
             }
-        </div>
         </div>
     )
 }

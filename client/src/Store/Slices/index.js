@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     pokemons: [], //actualPokemons
-    detail: null,
+    detail: null, 
     allPokemons: [],
     types: [],
     //pokemonsCache: [] ? para quitar filtros al estado anterior o stackear ord+filters
@@ -76,7 +76,13 @@ export const sliceReducer = createSlice({
                     break;
                 default: break;    
             }
-        }
+        },
+        clearDetail: (state)=>{
+            state.detail = null;
+        },
+        clearPokes: (state)=>{
+            state.pokemons = [];
+        },
     }
 })
 
@@ -88,7 +94,9 @@ export const {
     filterByType,
     filterByCreated,
     orderByName,
-    orderByAttack
+    orderByAttack,
+    clearDetail,
+    clearPokes
  } = sliceReducer.actions; //action creators.
 //para armar los objetos action. Los exportamos hacia las actions O directamente a los componentes!.
 

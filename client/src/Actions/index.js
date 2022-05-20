@@ -21,11 +21,13 @@ export function getPokemons(){
 export function getPokemonDetail(id){
     return async (dispatch)=>{
         try {
-            const pokeDetail = await axios.get(`http://localhost:3001/${id}`);
-            dispatch(setDetail(pokeDetail.data))
+            const pokeDetail = await axios.get(`http://localhost:3001/pokemons/${id}`);
+            dispatch(setDetail(pokeDetail.data)); //en caso de error, retorna un obj
+            //del tipo {msg: mensaje personalizado, error: mensaje del error}
         }catch(e){
             console.log("Error al llamar al detalle del pokemon. ", e.message);
             alert("No se encontró el pokémon ingresado.");
+        } finally {
         }
     }
 }
