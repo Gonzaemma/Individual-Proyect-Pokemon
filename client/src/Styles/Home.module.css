@@ -6,6 +6,8 @@
    background-repeat: no-repeat;
    margin: 0; padding-bottom: 90px; 
     top: 0; left: 0;
+
+    font-family: 'Orbitron', sans-serif;
 }
 
 .cardContainer{
@@ -32,4 +34,8 @@
 
 .loading{
     width: 300px;
+}
+
+h1{
+    padding-top: 45px; padding-bottom: 25px;
 }

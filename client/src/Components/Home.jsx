@@ -41,7 +41,7 @@ export default function Home(){
         setCurrentPage(1)
     }
     function handleAttackChange(e){
-        //e.preventDefault();
+        e.preventDefault();
         dispatch(orderByAttack(e.target.value));
         setCurrentPage(1);
     }
