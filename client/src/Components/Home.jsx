@@ -65,7 +65,7 @@ export default function Home(){
         <button onClick={e=>{handleClick(e)}}>Volver a cargar los pokemons</button>
 
         <div className={HomeCSS.filterDiv}>
-            <h3>Filters!</h3>
+            <h3>Filters!</h3> {/* HACERLE CHECKBOXES!! */}
             <select name="Por tipo" onChange={e => handleTypeChange(e)} >
                 <option value="all">Todos los tipos</option>
                 {types?.map(t=>(

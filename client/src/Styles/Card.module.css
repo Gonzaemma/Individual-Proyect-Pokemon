@@ -8,8 +8,9 @@
     flex-direction: column;
     margin: 5px;
     border-radius: 7px;
-    border-style:solid;
-    border-color:rgb(81, 95, 0);
+    border: 7px;
+    border-style:groove;
+    border-color:rgb(130, 107, 236);
     transition: 0.4s;
 }
 

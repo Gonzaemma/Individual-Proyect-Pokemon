@@ -1,0 +1,47 @@
+.formDiv{
+    background: linear-gradient(rgb(235, 201, 54), rgb(21, 51, 150));
+    
+    padding-bottom: 50px;
+}
+
+.prueba{
+    background-image: url("https://25.media.tumblr.com/tumblr_lax5nsn1l01qzih3uo1_r1_500.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    position:static;
+    background-size: 850px 650px;
+}
+
+
+.stats > label{
+    font-size: 20px;
+}
+.PyA > label{
+    font-size: 20px;
+}
+
+.inlineH3{
+    display: inline;
+    margin-right: 10px;
+    font-size: 25px;
+}
+.noILH3{
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.error{
+    color: rgb(187, 12, 12);
+    font-size: 18px;
+    font-family:'Arial';
+}
+
+.X{
+    margin-top: 15px;
+    display: inline-flex;
+}
+
+/* 
+background-color: rgb(245, 245, 99);
+
+*/

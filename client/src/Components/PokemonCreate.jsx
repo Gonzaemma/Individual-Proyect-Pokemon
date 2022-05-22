@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTypes, postPokemon } from "../Actions";
 import Navbar from "./Navbar";
+import CreationCSS from "../Styles/Creation.module.css"
 
 export default function PokemonCreate(){
     const {types} = useSelector(state=>state.reducer);
@@ -70,19 +71,19 @@ export default function PokemonCreate(){
         }));
     }
     return(
-        <div className="formContainer">
+        <div className={CreationCSS.formDiv}>
             <Navbar/>
             <h1>Crea y guarda un pokémon propio!</h1> <br />
-            <form onSubmit={e=>{handleSubmit(e)}}>
+            <form onSubmit={e=>{handleSubmit(e)}} className={CreationCSS.prueba}>
                 <div>
-                    <label>Nombre: </label>
+                    <h3 className={CreationCSS.inlineH3}>Nombre: </h3>
                     <input type="text" name="name" value={input.name} required
                     onChange={e=>handleInputChange(e)}/>
-                    {errors.name && <p>{errors.name}</p>}
+                    {errors.name && <p className={CreationCSS.error}>{errors.name}</p>}
                     <br />
                 </div>
                 <div>
-                    <label>Tipos: </label>
+                    <h3 className={CreationCSS.inlineH3}>Tipos: </h3>
                     <select name="types" onChange={e=>handleTypeSelect(e)}>
                         <option value={null}>Select types...</option>
                         {types.map(t=>(
@@ -90,11 +91,11 @@ export default function PokemonCreate(){
                         ))
                     }
                     </select>
-                    {errors.types && <p>{errors.types}</p>}
+                    {errors.types && <p className={CreationCSS.error}>{errors.types}</p>}
                     <br />
                 </div>
-                <div>
-                    <h3>Estadísticas: </h3>
+                <div className={CreationCSS.stats}>
+                    <h3 className={CreationCSS.noILH3}>Estadísticas: </h3>
                     <label>HP: </label>
                     <input type="number" name="hp" value={input.hp} required
                     min="10" max="500"  onChange={e=>handleInputChange(e)}/>
@@ -109,8 +110,8 @@ export default function PokemonCreate(){
                     min="1" max="1000"  onChange={e=>handleInputChange(e)}/>
                     <br />
                 </div>
-                <div>
-                    <h3>Peso y Altura</h3>
+                <div className={CreationCSS.PyA}>
+                    <h3 className={CreationCSS.noILH3}>Peso y Altura</h3>
                     <label>Peso: </label>
                     <input type="number" name="weight" value={input.weight}
                     min="1" max="100" onChange={e=>handleInputChange(e)}/>
@@ -123,7 +124,7 @@ export default function PokemonCreate(){
                     <label>URL de una imagen: </label>
                     <input type="text" name="image" value={input.image}
                     onChange={e=>handleInputChange(e)}/>
-                    {errors.image && <p>{errors.image}</p>}
+                    {errors.image && <p className={CreationCSS.error}>{errors.image}</p>}
                     <br />
                 </div>
                 {!errors.name && !errors.types && <button type="submit"> SUBMIT </button>}
@@ -131,7 +132,7 @@ export default function PokemonCreate(){
             <div>
                 {/* Zona para desmarcar tipos! */}
                 {input.types && input.types.map((t, i) => (
-                    <div key={i}>
+                    <div key={i} className={CreationCSS.X}>
                         <span>{t}</span><button key={i} onClick={()=>handleTypeDelte(t)}> X </button>
                     </div>
                 ))}

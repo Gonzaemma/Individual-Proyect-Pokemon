@@ -5,6 +5,7 @@ import LandingPage from './Components/LandingPage';
 import Home from './Components/Home';
 import PokemonCreate from './Components/PokemonCreate';
 import PokeDetail from './Components/PokeDetail';
+import generalCSS from './Styles/General.module.css' //para que aplique el css, sólo requiere ser importado :O
 
 function App() {
   return (
