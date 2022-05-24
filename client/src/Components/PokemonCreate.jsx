@@ -15,7 +15,7 @@ export default function PokemonCreate(){
             name:"", types: [1,2], image: ".png"
         }));
     },[dispatch]);
-
+ 
     const emptyState ={
         name: "",
         image: "",
@@ -73,14 +73,15 @@ export default function PokemonCreate(){
     return(
         <div className={CreationCSS.formDiv}>
             <Navbar/>
-            <h1>Crea y guarda un pokémon propio!</h1> <br />
-            <form onSubmit={e=>{handleSubmit(e)}} className={CreationCSS.prueba}>
+            <h1>Crea y guarda un pokémon propio!</h1>
+            <form onSubmit={e=>{handleSubmit(e)}} className={CreationCSS.formStyle}>
                 <div>
                     <h3 className={CreationCSS.inlineH3}>Nombre: </h3>
                     <input type="text" name="name" value={input.name} required
-                    onChange={e=>handleInputChange(e)}/>
+                    onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
                     {errors.name && <p className={CreationCSS.error}>{errors.name}</p>}
-                    <br />
+                    
                 </div>
                 <div>
                     <h3 className={CreationCSS.inlineH3}>Tipos: </h3>
@@ -92,48 +93,55 @@ export default function PokemonCreate(){
                     }
                     </select>
                     {errors.types && <p className={CreationCSS.error}>{errors.types}</p>}
-                    <br />
+                    
                 </div>
                 <div className={CreationCSS.stats}>
                     <h3 className={CreationCSS.noILH3}>Estadísticas: </h3>
                     <label>HP: </label>
                     <input type="number" name="hp" value={input.hp} required
-                    min="10" max="500"  onChange={e=>handleInputChange(e)}/>
+                    min="10" max="500"  onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
                     <label>Attack: </label>
                     <input type="number" name="attack" value={input.attack} required
-                    min="0" max="1000"  onChange={e=>handleInputChange(e)}/>
+                    min="0" max="1000"  onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
                     <label>Defense: </label>
                     <input type="number" name="defense" value={input.defense} required
-                    min="1" max="1000"  onChange={e=>handleInputChange(e)}/>
+                    min="1" max="1000"  onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
                     <label>Speed: </label>
                     <input type="number" name="speed" value={input.speed} required
-                    min="1" max="1000"  onChange={e=>handleInputChange(e)}/>
-                    <br />
+                    min="1" max="1000"  onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
+                    
                 </div>
                 <div className={CreationCSS.PyA}>
                     <h3 className={CreationCSS.noILH3}>Peso y Altura</h3>
                     <label>Peso: </label>
                     <input type="number" name="weight" value={input.weight}
-                    min="1" max="100" onChange={e=>handleInputChange(e)}/>
+                    min="1" max="100" onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
                     <label>Altura: </label>
                     <input type="number" name="height" value={input.height}
-                    min="1" max="500" onChange={e=>handleInputChange(e)}/>
-                    <br />
+                    min="1" max="500" onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
+                    
                 </div>
-                <div>
-                    <label>URL de una imagen: </label>
+                <div className={CreationCSS.imageURL}>
+                    <label>URL de imagen: </label>
                     <input type="text" name="image" value={input.image}
-                    onChange={e=>handleInputChange(e)}/>
+                    onChange={e=>handleInputChange(e)}
+                    className={CreationCSS.inputText}/>
                     {errors.image && <p className={CreationCSS.error}>{errors.image}</p>}
-                    <br />
+                    
                 </div>
                 {!errors.name && !errors.types && <button type="submit"> SUBMIT </button>}
             </form>
-            <div>
+            <div className={CreationCSS.typeBar}>
                 {/* Zona para desmarcar tipos! */}
                 {input.types && input.types.map((t, i) => (
                     <div key={i} className={CreationCSS.X}>
-                        <span>{t}</span><button key={i} onClick={()=>handleTypeDelte(t)}> X </button>
+                        <span>{t} </span> <button key={i} onClick={()=>handleTypeDelte(t)}> X </button>
                     </div>
                 ))}
             </div>

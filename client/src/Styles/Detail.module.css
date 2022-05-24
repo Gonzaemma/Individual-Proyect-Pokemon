@@ -1,0 +1,90 @@
+.detailDiv{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #a5a3a3;
+    overflow: hidden;
+    width: 100%; height: 100%;
+}
+.loading{
+    font-size: 35px ;
+}
+.loading > img{
+    width: 430px;
+    margin-top: 75px;
+}
+.detailDiv:before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.55;
+    background-image: url('https://images5.alphacoders.com/380/380868.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+}
+
+.detailDiv2{
+    width: fit-content;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border: groove rgb(72, 72, 236) 12px;
+    border-radius: 10px;
+    box-shadow: 12px 11px 9px rgb(5, 5, 92);
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+
+    background:radial-gradient(rgba(206, 212, 120, 0.788), rgba(13, 39, 105, 0.781));
+    font-size: 21px;
+}
+.detailDiv2 > img{
+    width: 550px; height: 435px;
+}
+
+.stats{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px;
+}
+.stats > span{
+    margin: 4px 0 4px;
+    text-shadow: 1px 2px 1px black;
+    font-size: 18px;
+}
+.stats > h3{
+    color: rgb(6, 6, 66);
+}
+
+.stat1{
+    color: rgb(12, 126, 12)
+}
+.stat2{
+    color: red
+}
+.stat3{
+    color: blue
+}
+.stat4{
+    color: yellow
+}
+.fire{
+    color: rgb(255, 60, 0);} .water{
+    color: rgb(41, 139, 172)} .grass{
+    color: rgb(21, 185, 21)} .poison{
+    color: blueviolet} .bug{
+    color: rgb(104, 161, 18);} .electric{
+    color: rgb(184, 184, 21);} .fairy{
+    color: rgb(175, 77, 175);} .ground{
+    color: rgb(221, 157, 39)} .psychic{
+    color: rgb(224, 69, 121)} .steel{
+    color: rgb(97, 95, 95)} .ghost{
+    color: rgb(51, 10, 92)}

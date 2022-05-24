@@ -30,7 +30,8 @@ export default function Navbar(){
                 <form onSubmit={e=>handleSubmit(e)}>
                 <label>Buscar un pokémon: </label>
                     <input id="search" type="search" placeholder="tipe a name"
-                    value={name} onChange={e=>handleInputSearch(e)}/>
+                    value={name} onChange={e=>handleInputSearch(e)}
+                    className={NavbarCSS.inputText}/>
                 </form>
             </section>
         </div>

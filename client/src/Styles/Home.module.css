@@ -7,6 +7,8 @@
    margin: 0; padding-bottom: 90px; 
     top: 0; left: 0;
 
+    justify-content: center; align-items: center;
+
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -28,10 +30,93 @@
     justify-content: center;
 }
 
+.panel{
+    padding: 0;
+    display: flex;
+    justify-content:space-between;
+    align-items: flex-start;
+    height: 250px; width: 1400px;
+    border:groove rgb(52, 109, 216) 15px;
+    border-radius: 15px;
+    margin-left: 33px;
+    margin-bottom: 35px; margin-top: 35px;
+    text-shadow: 1px 1px 2px rgb(14, 7, 41);
+    box-shadow: 6px 8px 6px rgba(17, 17, 109, 0.651);
+}
+
 .filterDiv{
-    color: red;
+    font-size: 17px;
+    color: rgb(230, 20, 20);
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+.filterDiv2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.filterDiv3{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: flex-start;
+    width: 200px;
 }
 
 .loading{
     width: 300px;
+}
+
+input{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin: 2px 7px;
+}
+
+.reloadDiv{
+    display: flex;
+    flex-direction: column;
+}
+.reloadImg{
+    width: 150px;
+    height: 210px;
+}
+.reloadButton{
+    height: 33px;
+    width: 130px;
+    color: rgb(94, 23, 34);
+    background-color: rgb(236, 170, 181);
+    border: solid rgb(94, 23, 34) 4px;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: large;
+}
+.reloadButton:hover{
+    height: 36px;
+    width: 134px;
+    color: rgb(94, 23, 34);
+    background-color: rgb(126, 248, 126);
+    border: solid rgb(54, 97, 238) 4px;
+    font-size: large;
+    box-shadow: 3px 4px 4px rgba(11, 11, 37, 0.699);
+}
+
+.paginationButton{
+    color: rgb(94, 23, 34);
+    background-color: rgb(236, 170, 181);
+    border: solid rgb(94, 23, 34) 4px;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: large;
+    width: 35px; height: fit-content;
+    margin: 1px 7px 12px;
+}
+.paginationButton:hover{
+    color: rgb(94, 23, 34);
+    background-color: rgb(126, 248, 126);
+    border: solid rgb(54, 97, 238) 4px;
+    box-shadow: 2px 2px 3px rgba(19, 19, 71, 0.822);
 }

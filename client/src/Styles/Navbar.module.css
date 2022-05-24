@@ -8,6 +8,9 @@
     box-shadow: 0px 9px 14px 5px rgba(12, 53, 38, 0.62);
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 20px;
+
+    position: relative;
+    z-index: 2;
 }
 
 .navButtons > button{
@@ -20,8 +23,25 @@
     border-radius: 5px;
     background-color: rgb(221, 221, 82);
 }
+.navButtons > button:hover{
+    font-size: 17px;
+    width:fit-content+2px; height: fit-content+2px;
+    border: solid rgb(8, 8, 185) 3px;
+    box-shadow: 2px 3px 5px rgba(35, 35, 119, 0.644);
+    background-color: rgb(141, 241, 141);
+}
 
 .searchdiv{
     margin-right: 20px;
     font-size: 20px;
+}
+
+.inputText{
+    width: 180px; height: 30px;
+    padding: 5px;
+    margin: 2px 7px;
+    border-radius: 7px;
+    border: solid blue 3px;
+    background-color: rgb(240, 240, 135);
+    font-family: 'Orbitron', sans-serif;
 }

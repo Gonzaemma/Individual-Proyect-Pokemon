@@ -20,6 +20,7 @@ export default function Home(){
         !types.length && dispatch(getTypes());
     },[dispatch])
 
+
     /* HANDLERS */
     function handleClick(e){
         e.preventDefault();
@@ -32,21 +33,56 @@ export default function Home(){
         setCurrentPage(1);
     }
     function handleOriginChange(e){
-        dispatch(filterByCreated(e.target.value));
-        setCurrentPage(1);
+        if(e.target.checked){
+            discheck(e);
+            dispatch(filterByCreated(e.target.value));
+            setCurrentPage(1);
+        }else{
+            dispatch(filterByCreated("all"));
+            setCurrentPage(1);
+        }
     }
     function handleAlphaChange(e){
-        e.preventDefault();
-        dispatch(orderByName(e.target.value));
-        setCurrentPage(1)
+        if(e.target.checked){
+            discheck(e);
+            dispatch(orderByName(e.target.value));
+            setCurrentPage(1);
+        }else{
+            dispatch(orderByName("none"));
+            setCurrentPage(1);
+        }
     }
     function handleAttackChange(e){
-        e.preventDefault();
-        dispatch(orderByAttack(e.target.value));
-        setCurrentPage(1);
+        if(e.target.checked){
+            discheck(e);
+            dispatch(orderByAttack(e.target.value));
+            setCurrentPage(1);
+        }else{
+            dispatch(orderByAttack("none"));
+            setCurrentPage(1)
+        }
     }
 
-    /* ------------ Operaciones para el paginado ------------ */
+    function discheck(actual){ //alta función random me mandé acá :v
+        var checks;
+        if(actual.target.className === "origen"){
+            checks = document.querySelectorAll(".origen");
+            checks.forEach(e=>{
+                e.checked = false;
+            })
+            actual.target.checked = true;
+        }else{
+            checks = document.querySelectorAll(".alpha, .fuerza");
+            checks.forEach(e=>{
+                e.checked = false;
+            })
+            actual.target.checked = true;
+        }
+    }
+
+
+
+    /* ------------ Operaciones para el paginado ------------ {HomeCSS.inputCheck}*/
     var pokesPorPag = 12;
     const [currentPage, setCurrentPage] = useState(1);
     var totalPokes = pokemons.length;
@@ -62,39 +98,71 @@ export default function Home(){
         <div className={HomeCSS.body}>
         <Navbar/>
         <h1>POKEMONS HOME</h1>
-        <button onClick={e=>{handleClick(e)}}>Volver a cargar los pokemons</button>
 
-        <div className={HomeCSS.filterDiv}>
-            <h3>Filters!</h3> {/* HACERLE CHECKBOXES!! */}
-            <select name="Por tipo" onChange={e => handleTypeChange(e)} >
-                <option value="all">Todos los tipos</option>
-                {types?.map(t=>(
-                    <option key={t.id} value={t.name}>{t.name}</option>
-                ))
-                }
-            </select> <br />
-            <select name="Por origen" onChange={e => handleOriginChange(e)}>
-                <option value="all">Todos los pokemons</option>
-                <option value="existing">Existente (API)</option>
-                <option value="created">Creado (BD)</option>
-            </select> <br />
+        <div className={HomeCSS.panel}>
+            <div className={HomeCSS.filterDiv}>
+                    <h3>Ordering!</h3>
+
+                    <div className={HomeCSS.filterDiv2}>
+                        <div className={HomeCSS.filterDiv3}>
+                            <h4>Alfabéticamente</h4>
+                            <label><input type="checkbox" name="Alfabético" value="ASC"
+                            onChange={e=>handleAlphaChange(e)}
+                            className="alpha"/>Ascendente  </label>
+                            <label><input type="checkbox" name="Alfabético" value="DESC"
+                            onChange={e=>handleAlphaChange(e)}
+                            className="alpha"/>Descendente</label>
+                        </div>
+                        <div className={HomeCSS.filterDiv3}>
+                            <h4>Por fuerza</h4>
+                            <label><input type="checkbox" name="Fuerza" value="ASC"
+                            onChange={e=>handleAttackChange(e)}
+                            className="fuerza"/>Ascendente</label>
+                            <label><input type="checkbox" name="Fuerza" value="DESC"
+                            onChange={e=>handleAttackChange(e)}
+                            className="fuerza"/>Descendente</label>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div className={HomeCSS.reloadDiv}>
+                <img src="https://static.wikia.nocookie.net/bcd45199-694a-4c47-80e5-c02921faeb2c" 
+                alt=":c" className={HomeCSS.reloadImg}/>
+                <button onClick={e=>{handleClick(e)}}
+                className={HomeCSS.reloadButton}>Reload!</button>
+            </div>
+
+            <div className={HomeCSS.filterDiv}>
+                <h3>Filters!</h3>
+
+                <div className={HomeCSS.filterDiv2}>
+                    <div className={HomeCSS.filterDiv3}>
+                        <h4>Origen de datos</h4>
+                        <label><input type="checkbox" name="origen" value="all"
+                        onChange={e=>handleOriginChange(e)}
+                        className="origen"/>Ambos (todos)</label>
+                        <label><input type="checkbox" name="origen" value="existing"
+                        onChange={e=>handleOriginChange(e)}
+                        className="origen"/>Existentes (API)</label>
+                        <label><input type="checkbox" name="origen" value="created"
+                        onChange={e=>handleOriginChange(e)}
+                        className="origen"/>Creados (DB)</label>
+                    </div>
+
+                    <div className={HomeCSS.filterDiv3}>
+                        <h4>Tipos</h4>
+                        <select name="Por tipo" onChange={e => handleTypeChange(e)} >
+                            <option value="all">Todos los tipos</option>
+                            {types?.map(t=>(
+                            <option key={t.id} value={t.name}>{t.name}</option>))}
+                        </select>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div className={HomeCSS.filterDiv}>
-                <h3>Ordering!</h3>
-                <span>Alfabéticamente</span>
-                <select name="Alfabético" onChange={e=>handleAlphaChange(e)}>
-                    <option value="none">Sin orden</option>
-                    <option value="ASC">Ascendente</option>
-                    <option value="DESC">Descendente</option>
-                </select>
-                <span>Por fuerza</span>
-                <select name="Fuerza" onChange={e=>{handleAttackChange(e)}}>
-                    <option value="none">Sin orden</option>
-                    <option value="ASC">Ascendente</option>
-                    <option value="DESC">Descendente</option>
-                </select>
-        </div>
 
     {/* SECCIÓN DE PAGINADO Y CARDS DE POKEMONS*/}
         <PaginatorBar cantPages={cantPages} paginator={paginator}/>
@@ -111,10 +179,14 @@ export default function Home(){
                     </div>
                 ) : <div>
                 <img className={HomeCSS.loading}
-                 src="https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv" alt="image not found" />
+                 src="https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv" alt="nada" />
                 <h3>CAPTURANDO POKEMONS...</h3>
                 </div>
             }
         </div>
     )
 }
+
+/* Borradores :v 
+   pendiente: ver el loading cuando no existen pokemons de un tipo
+*/

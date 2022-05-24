@@ -10,21 +10,11 @@ a{
     text-decoration: none;
 }
 
-input{
-    width: 180px; height: 30px;
-    padding: 5px;
-    margin: 2px 7px;
-    border-radius: 7px;
-    border: solid blue 3px;
-    background-color: rgb(240, 240, 135);
-    font-family: 'Orbitron', sans-serif;
-}
-
 select{
     width: 180px; height: 30px;
     padding: 5px;
     margin: 2px 7px;
     border-radius: 7px;
-    border: dashed blue 3px;
+    border: solid blue 3px;
     background: none;
 }

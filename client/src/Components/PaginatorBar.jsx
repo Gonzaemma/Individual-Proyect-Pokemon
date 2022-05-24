@@ -1,4 +1,5 @@
 import React from "react";
+import HomeCSS from '../Styles/Home.module.css'
 
 export default function PaginatorBar({cantPages, paginator}){
 
@@ -10,7 +11,8 @@ export default function PaginatorBar({cantPages, paginator}){
         <div>
             {
                 pageNumbers.map(n=>(
-                    <button key={n} onClick={()=>paginator(n)}> {n} </button>
+                    <button key={n} onClick={()=>paginator(n)}
+                    className={HomeCSS.paginationButton}> {n} </button>
                 ))
             }
         </div>
