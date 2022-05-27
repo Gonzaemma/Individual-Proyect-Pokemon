@@ -32,6 +32,9 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.INTEGER
     },
+/*     ability:{
+      type: DataTypes.STRING
+    }, puesto durante la correción :3 */
     createdInDb: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
@@ -39,7 +42,8 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      defaultValue: 'https://cdna.artstation.com/p/assets/images/images/017/645/126/large/antoine-van-bergen-pokeball-avb2.jpg?1556806249'
+      defaultValue: 'https://cdna.artstation.com/p/assets/images/images/017/645/126/large/antoine-van-bergen-pokeball-avb2.jpg?1556806249',
+      allowNull: false
     }
   },
   {timestamps: false}

@@ -171,7 +171,7 @@ export default function Home(){
                         {slicedPokemons.map(p=>{
                             return(
                                 <Link key={p.id} to={"/pokemon/"+p.id}>
-                                    <Card image={p.image} name={p.name} types={p.types}/>
+                                    <Card image={p.image} name={p.name} types={p.types} ability={p.ability}/>
                                 </Link>
                             )
                         })}
@@ -190,5 +190,4 @@ export default function Home(){
    pendiente: ver el loading cuando no existen pokemons de un tipo
    https://e1.pngegg.com/pngimages/889/193/png-clipart-goku-son-goku.png
 
-   https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv
 */

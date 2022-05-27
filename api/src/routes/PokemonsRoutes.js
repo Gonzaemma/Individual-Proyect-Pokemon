@@ -72,47 +72,46 @@ const DBinfo = async function (){
                 exclude: ["createdAt", "updatedAt"]
             }
         })
-        //tal vez haga falta un map acá? tal vez...
         return dbInfo;
     }catch(e){
         console.log("Error en traer los datos de la DB. ", e.message);
     }
 }
 
+const recursiva = async function (link="https://pokeapi.co/api/v2/pokemon", page=1){
+    var mapedInfo = [];
+    if(page<=2){ //menor o igual a 2 porque cada página trae 20 pokemons
+        var primerLlamado = await axios.get(link);
+        var mapedLinks = primerLlamado.data.results.map(async (poke) =>{
+            var segundosLlamados = await axios.get(poke.url);
+            return segundosLlamados.data;
+        });
+        const infoPromisesArray = await axios.all(mapedLinks);
+        mapedInfo = infoPromisesArray.map(poke =>{
+            return {
+                    name: poke.name,
+                    id: poke.id,
+                    height: poke.height,
+                    weight: poke.weight,
+                    image: poke.sprites.other.dream_world.front_default,
+                    hp: poke.stats[0].base_stat,
+                    attack: poke.stats[1].base_stat,
+                    defense: poke.stats[2].base_stat,
+                    speed: poke.stats[5].base_stat,
+                    types: poke.types.map(t => {return {name: t.type.name}}),
+                    /* ability: poke.abilities[0].ability.name puesto durante la correción :3*/
+                 }
+            });
+        page++;
+        return mapedInfo.concat(await recursiva(primerLlamado.data.next, page));
+    }else{
+        return mapedInfo;
+    }
+}//fin función recursiva.
+
 const APIinfo = async function (){
     try {
-        var pokes40 = [];
-
-        const recursiva = async function (link="https://pokeapi.co/api/v2/pokemon", page=1){
-            var mapedInfo = [];
-            if(page<=2){
-                var primerLlamado = await axios.get(link);
-                var mapedLinks = primerLlamado.data.results.map(async (poke) =>{
-                    var segundosLlamados = await axios.get(poke.url);
-                    return segundosLlamados.data;
-                });
-                const infoPromisesArray = await axios.all(mapedLinks);
-                mapedInfo = infoPromisesArray.map(poke =>{
-                    return {
-                            name: poke.name,
-                            id: poke.id,
-                            height: poke.height,
-                            weight: poke.weight,
-                            image: poke.sprites.other.dream_world.front_default,
-                            hp: poke.stats[0].base_stat,
-                            attack: poke.stats[1].base_stat,
-                            defense: poke.stats[2].base_stat,
-                            speed: poke.stats[5].base_stat,
-                            types: poke.types.map(t => {return {name: t.type.name}})
-                         }
-                    });
-                page++;
-                return mapedInfo.concat(await recursiva(primerLlamado.data.next, page));
-            }else{
-                return mapedInfo;
-            }
-        }//fin función recursiva.
-        pokes40 = await recursiva(); //recursiva devuelve un arreglo de 40 pokemons de la api.
+        var pokes40 = await recursiva(); //recursiva devuelve un arreglo de 40 pokemons de la api.
         //console.log("'pokes40' existe! trajo de la api y es: ", pokes40);
         return pokes40;
     } catch (error) {
@@ -179,12 +178,11 @@ router.get('/:id', async (req, res)=>{
 });
 
 router.post('/', async (req, res)=>{
-    console.log("ENTRÉ AL POST.");
     //luego si quiero, verificar los datos que me llegan
     try{
         const {
             name, hp, attack, defense, speed, image, height, weight, types
-        } = req.body; //este es el destructuring de la info que llega por body
+        } = req.body;
     
         const [createdPokemon, isCreated] = await Pokemon.findOrCreate({
             where:{name},

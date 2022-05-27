@@ -28,7 +28,7 @@
 }
 
 .card > ul{
-    margin-bottom: 22px; padding-bottom: 9em;
+    margin-bottom: 22px; padding-bottom: 8em;
     text-decoration: none; list-style:disc;
 }
 .card:hover{

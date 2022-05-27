@@ -64,6 +64,8 @@ export default function PokemonCreate(){
     }
     function handleSubmit(e){
         e.preventDefault();
+        !input.image.length &&
+        setInput({...input, image: "https://cdna.artstation.com/p/assets/images/images/017/645/126/large/antoine-van-bergen-pokeball-avb2.jpg?1556806249"});
         dispatch(postPokemon(input)); //dispatch??
         setInput(emptyState);
         setErrors(validator({
