@@ -24,7 +24,7 @@
     background-color: rgb(221, 221, 82);
 }
 .navButtons > button:hover{
-    font-size: 17px;
+    font-size: 16px;
     width:fit-content+2px; height: fit-content+2px;
     border: solid rgb(8, 8, 185) 3px;
     box-shadow: 2px 3px 5px rgba(35, 35, 119, 0.644);
@@ -44,4 +44,20 @@
     border: solid blue 3px;
     background-color: rgb(240, 240, 135);
     font-family: 'Orbitron', sans-serif;
+}
+
+@media screen and (max-width: 480px){
+    .searchdiv > form:first-child{
+        margin: 0; padding: 1px;
+        font-size: 14px;
+    }
+    .searchdiv > form > .inputText{
+        border-color: green;
+        width: 125px;
+    }
+    .navButtons > button{
+        margin: 0 0 0 3px;
+        padding: 2px 2px;
+        font-size: 13px;
+    }
 }

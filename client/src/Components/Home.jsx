@@ -178,7 +178,7 @@ export default function Home(){
                     </div>
                 ) : <div>
                 <img className={HomeCSS.loading}
-                 src="https://i.pinimg.com/originals/3c/2d/1b/3c2d1b10bb5529519c29b88ee64f7ef5.png" alt="nada" />
+                 src="https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv" alt="nada" />
                 <h3>CAPTURANDO POKEMONS...</h3>
                 </div>
             }

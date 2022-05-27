@@ -5,6 +5,7 @@
     background: #a5a3a3;
     overflow: hidden;
     width: 100%; height: 100%;
+    flex-wrap: wrap;
 }
 .loading{
     font-size: 35px ;
@@ -16,7 +17,7 @@
 .detailDiv:before{
     content: ' ';
     display: block;
-    position: absolute;
+    position:fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -24,7 +25,7 @@
     z-index: 1;
     opacity: 0.55;
     background-image: url('https://images5.alphacoders.com/380/380868.jpg');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: 50% 0;
     background-size: cover;
 }
@@ -40,6 +41,7 @@
     margin-bottom: 18px;
     position: relative;
     z-index: 2;
+    min-width: 240px;
 
     background:radial-gradient(rgba(206, 212, 120, 0.788), rgba(13, 39, 105, 0.781));
     font-size: 21px;
@@ -88,3 +90,23 @@
     color: rgb(224, 69, 121)} .steel{
     color: rgb(97, 95, 95)} .ghost{
     color: rgb(51, 10, 92)}
+
+    @media screen and (max-width: 700px) {
+        .detailDiv2 > img{
+            width: 400px; height: 300px;
+        }
+        .detailDiv2 > h1{
+            font-size: 35px;
+        }
+
+    }
+
+    @media screen and (max-width: 400px) {
+
+        .detailDiv2 > h1{
+            font-size: 20px;
+        }
+        .detailDiv2 > img{
+            width: 300px; height: 200px;
+        }
+    }
