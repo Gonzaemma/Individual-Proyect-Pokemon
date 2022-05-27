@@ -135,7 +135,8 @@ export default function PokemonCreate(){
                     {errors.image && <p className={CreationCSS.error}>{errors.image}</p>}
                     
                 </div>
-                {!errors.name && !errors.types && <button type="submit"> SUBMIT </button>}
+                {!errors.name && !errors.types && <button type="submit"
+                className={CreationCSS.submit}> SUBMIT </button>}
             </form>
             <div className={CreationCSS.typeBar}>
                 {/* Zona para desmarcar tipos! */}

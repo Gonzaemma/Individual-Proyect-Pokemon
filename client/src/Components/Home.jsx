@@ -13,7 +13,6 @@ export default function Home(){
     //ESTADOS LOCALES Y GLOBALES//
     const dispatch = useDispatch();
     const { pokemons, types } = useSelector(state => state.reducer);
-    //const {types} = useSelector(state=>state.reducer);
 
     useEffect(()=>{
         !pokemons.length && dispatch(getPokemons());
@@ -97,7 +96,7 @@ export default function Home(){
     return(
         <div className={HomeCSS.body}>
         <Navbar/>
-        <h1>POKEMONS HOME</h1>
+        <h1>POKEMON APP!</h1>
 
         <div className={HomeCSS.panel}>
             <div className={HomeCSS.filterDiv}>
@@ -179,7 +178,7 @@ export default function Home(){
                     </div>
                 ) : <div>
                 <img className={HomeCSS.loading}
-                 src="https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv" alt="nada" />
+                 src="https://i.pinimg.com/originals/3c/2d/1b/3c2d1b10bb5529519c29b88ee64f7ef5.png" alt="nada" />
                 <h3>CAPTURANDO POKEMONS...</h3>
                 </div>
             }
@@ -189,4 +188,7 @@ export default function Home(){
 
 /* Borradores :v 
    pendiente: ver el loading cuando no existen pokemons de un tipo
+   https://e1.pngegg.com/pngimages/889/193/png-clipart-goku-son-goku.png
+
+   https://64.media.tumblr.com/cf16ffbe17ad33951fc567529bc649b5/tumblr_mrco5jwNIT1rpn9eno1_500.gifv
 */

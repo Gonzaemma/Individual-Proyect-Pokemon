@@ -24,7 +24,7 @@ export default function Navbar(){
         <div className={NavbarCSS.navdiv}>
             <section className={NavbarCSS.navButtons}>
                 <button><NavLink to='/home'> Home </NavLink></button>
-                <button><NavLink to='/pokemon'> Create a Pokémon </NavLink></button>
+                <button><NavLink to='/pokemon'> Crea un Pokémon </NavLink></button>
             </section>
             <section className={NavbarCSS.searchdiv}>
                 <form onSubmit={e=>handleSubmit(e)}>

@@ -7,7 +7,7 @@ export default function Card({image, name, types}){
     return(
         <div className={CardCSS.card}>
             <img src={image} alt="nadita" width="250px"/>
-            <h3>{name}</h3>
+            <h2>{name}</h2>
             <ul>
                 {types.map((t,i)=>{
                     return <li key={i}>{t.name}</li>
